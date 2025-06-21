@@ -33,7 +33,7 @@ export default async function Loginform() {
                     "use server";
 
                     await signIn("google", {
-                        redirectTo: "/"
+                        redirectTo: "/onboarding"
                     })
                 }}>
                     {/* <Button className="w-full" variant="outline">
@@ -46,7 +46,7 @@ export default async function Loginform() {
                     "use server";
 
                     await signIn("github", {
-                        redirectTo: "/"
+                        redirectTo: "/onboarding"
                     })
                 }}>
 

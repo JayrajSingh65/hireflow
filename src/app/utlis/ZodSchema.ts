@@ -10,4 +10,10 @@ export const companySchema = z.object({
 
     xaccount: z.string().optional(),
 
+});
+
+export const jobSeekerSchema = z.object({
+    name: z.string().min(2, "Name must be atleast 2 char"),
+    about: z.string().min(10, "Please provide more information about you"),
+    resume: z.string().min(1, "Please provide your resume")
 })

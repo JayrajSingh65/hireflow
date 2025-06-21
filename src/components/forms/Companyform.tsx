@@ -16,6 +16,7 @@ import { Loader2 } from "lucide-react"
 import { UploadButton, UploadDropzone } from "../general/uploadthing"
 import { createCompany } from "@/app/actions"
 import { useState } from "react"
+import Image from "next/image"
 
 
 
@@ -54,7 +55,7 @@ export function CompanyForm() {
     return (
        <Form {...form}>
 
-        <form className="space-y-4 ">
+        <form className="space-y-4 " onSubmit={form.handleSubmit(onsubmit)}>
             <div className="grid gird-cols-1 md:grid-cols-2 gap-6 ">
 
                 <FormField
@@ -179,17 +180,28 @@ export function CompanyForm() {
                     <FormItem>
                         <FormLabel>Company Logo</FormLabel>
                         <FormControl>
-                            <UploadDropzone endpoint="imageUploader" onClientUploadComplete={ (res) => {
-                                field.onChange(res[0].url)
+                            <div>
+                                {field.value ? (
+                                 <div className="relative w-fit">
+                                    <Image src={field.value} alt="company" width={100} height={100}/>
+                                     </div>
+                                ) : (
 
-                            }}
-                            onUploadError={() => {
-                                console.log("somthig wrong")
-                            }}
+                                    <UploadDropzone endpoint="imageUploader" onClientUploadComplete={ (res) => {
+                                        field.onChange(res[0].url)
+        
+                                    }}
+                                    onUploadError={() => {
+                                        console.log("somthig wrong")
+                                    }}
+        
+                                    
+        
+                                  />
 
+                                )}
+                            </div>
                             
-
-                          />
                          
                         </FormControl>
                     </FormItem>
@@ -199,10 +211,13 @@ export function CompanyForm() {
                 
                 />
 
- 
+                <Button type="submit" className="w-full bg-green-400 font-bold" disabled={pending}>
+                    {pending ? "Submiting" : "continue"}
+                    
+
+                </Button>
 
 
-           
 
 
         </form>
