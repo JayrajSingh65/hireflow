@@ -68,7 +68,7 @@ export function JobSeekerForm() {
                                      </div>
                                 ) : (
 
-                                    <UploadDropzone endpoint="imageUploader" onClientUploadComplete={ (res) => {
+                                    <UploadDropzone endpoint="ResumeUploader" onClientUploadComplete={ (res) => {
                                         field.onChange(res[0].url)
         
                                     }}
